@@ -49,8 +49,8 @@ class App:
             self.canvas.get_tk_widget().pack(side='top', fill='both', expand=True)
             frame.pack()
             
-        root.after(10,self.contForward)
-        root.after(10,self.contBackward)
+        root.after(1,self.contForward)
+        root.after(1,self.contBackward)
     
     def getFrame(self,i, arr):
             if arr.shape[0] <=i:
@@ -79,16 +79,12 @@ class App:
     def PlayForward(self):
             print ("button pressed")
             self.runningF=True
-            #while (self.i < self.time):
-            #    self.i=self.i+1
-            #    self.refreshFigures()
+            
                 
     def PlayBackward(self):
             print ("button pressed")
             self.runningB=True
-            #while (self.i > 0):
-            #    self.i=self.i-1
-            #    self.refreshFigures()
+            
 
     def stopTask(self):
             self.runningF=False
@@ -99,14 +95,14 @@ class App:
                 self.i=self.i+1
                 self.refreshFigures()
                 print( "Forward %d" % self.i)
-            root.after(10, self.contForward)
+            root.after(1, self.contForward)
 
     def contBackward(self):
             if (self.runningB and (self.i > 0)):
                 self.i=self.i-1
                 self.refreshFigures()
                 print( "Backward %d" % self.i)
-            root.after(10, self.contBackward)
+            root.after(1, self.contBackward)
                 
 
 
@@ -119,6 +115,8 @@ class App:
             self.a.imshow(self.img)
             self.a.set_title("Time=%d" % self.i)
             self.b.plot(range(max([0,self.i-30]),min([self.i,self.time])),graph1[max([0,self.i-30]):min([self.i,self.time])])
+            #self.line1.set_xdata(range(max([0,self.i-30]),min([self.i,self.time])))
+            #self.line1.set_ydata(graph1[max([0,self.i-30]):min([self.i,self.time])])
             self.b.set_title("Graph 1")
             self.c.plot(range(max([0,self.i-30]),min([self.i,self.time])),graph2[max([0,self.i-30]):min([self.i,self.time])])
             self.c.set_title("Graph 2")
